@@ -1,0 +1,45 @@
+@import "bourbon";
+$color-coral: #F45D4C;
+$color-orange: #F7A541;
+$color-green: #A1DBB2;
+$color-yellow: #FACA66;
+$color-blue: #54787D;
+$color-teal: #60B99A;
+$color-purple: #5B527F;
+$color-gray: #555555;
+$color-black: #000000;
+
+.diagonals {
+    position: fixed;
+    height: 200%;
+    width: 100%;
+
+    @include display(flex);
+    @include align-items(stretch);
+}
+.diagonal {
+    height: 100%;
+    background: $color-coral;
+    @include flex(1);
+    @include transform(rotate(10deg) translateY(-10%) translateX(-20%));
+    @include transition(all ease 0.3s);
+    &:hover {
+       @include flex(2);
+        margin-right: -30px;
+    }
+    &:nth-child(2) {
+        background: $color-orange;
+    }
+    &:nth-child(3) {
+        background: $color-yellow;
+    }
+    &:nth-child(4) {
+        background: $color-teal;
+    }
+    &:nth-child(5) {
+        background: $color-blue;
+    }
+    &:nth-child(6) {
+        background: $color-purple;
+    }
+}

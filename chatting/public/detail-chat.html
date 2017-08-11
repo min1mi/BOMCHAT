@@ -16,7 +16,7 @@
   <div class='chat-container'>
     <div class="chat-header-box">
       <a href="javascript:history.go(-1)" class='backBtn'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-      <div class="chat-header">홍길동</div>
+      <div class="chat-header" value='2'>홍길동</div>
     </div>
 
     <div id='messageBox' class='messageBox'>
@@ -25,7 +25,7 @@
       </div>
       <div class='cd-content clearfix'>
         <span class='you' name="you" rows="8" cols="80">네, 안녕하세요^^</span>
-        <img src="../image/small/user2.png">
+        <img src="../image/user2.png">
       </div>
       <div class='cd-content clearfix'>
         <span class='me' name="me" rows="8" cols="80">안녕하세요</span>
@@ -34,7 +34,7 @@
 
 
     <div class='message-input-box'>
-      <input id="message" type="text" placeholder="메세지를 작성하세요">
+      <input id="message" maxlength="255" type="text" placeholder="메세지를 작성하세요">
       <button id="sendBtn" type="button" class='btn'>전송</button>
     </div>
   </div>

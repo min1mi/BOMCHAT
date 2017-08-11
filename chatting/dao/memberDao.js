@@ -5,45 +5,21 @@ module.exports = {
   setConnection(conn) {
     this.connection = conn
   },
-
-  insert : function(member, successFn, errorFn) {
+  selectOne(no, successFn, errorFn) { // 성공했을 때 호출될 함수, 실패했을 때 호출될 함수
+    // alert(currPageNo + 1) // 0번째 태그의 콘텐츠만 가져옴, 콘텐츠 = 시작태그와 끝태그 사이에 있는 값
     this.connection.query(
-      'insert into memb(name, tel, email, pwd) values(?,?,?,password(?))',
-      [member.name, member.tel, member.email, member.password],
-      function(error, results) {
-        if (error) {
-          errorFn(error)
-        } else {
-          successFn(results)
-        }
-    }) // connection.query
-  }, //insertMember
-
-  update : function(member, successFn, errorFn) {
-    this.connection.query(
-      'update memb set name=?, tel=?, email=?, pwd=password(?) where mno=?',
-      [member.name, member.tel, member.email, member.password, member.no],
-      function(error, results) {
-        if (error) {
-          errorFn(error)
-        } else {
-          successFn(results)
-        }
-    }) // connection.query
-  }, // updateMember
-
-  delete : function(no, successFn, errorFn) {
-    this.connection.query(
-      'delete from memb where mno=?',
+      'select accounttype, email, id, mtype, name, mno \
+      from memb \
+      where mno = ?',
       [no],
-      function(error, results) {
+      function (error, results) {
         if (error) {
           errorFn(error)
         } else {
-          successFn(results)
+          successFn(results[0])
         }
     }) // connection.query
-  } // deleteMember
+  }, // selectOne
 } // module
 
 

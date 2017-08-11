@@ -3,8 +3,8 @@
 
 const mysql = require('mysql')
 const connection = mysql.createConnection({
-  database: 'webappdb',
-  user: 'webapp',
+  database: 'bombeedb',
+  user: 'bombee',
   password: '1111'
 })
 connection.connect()

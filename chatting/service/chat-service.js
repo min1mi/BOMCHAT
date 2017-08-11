@@ -1,12 +1,12 @@
 "use strict"
 
 module.exports = {
-  setStudentDao(dao) {
-    this.studentDao = dao
-  },
-
   setMemberDao(dao) {
     this.memberDao = dao
+  },
+
+  setTrainerDao(dao) {
+    this.trainerDao = dao
   },
 
   list(pageNo, pageSize, success, error) {

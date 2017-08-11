@@ -1,39 +1,59 @@
 const express = require('express')
-const datasource = require('../util/datasource')
-const studentDao = require('../dao/studentDao')
-const memberDao = require('../dao/memberDao')
-const studentService = require('../service/student-service')
-const connection = datasource.getConnection()
-studentDao.setConnection(connection)
-memberDao.setConnection(connection)
+// const datasource = require('../util/datasource')
+// const trainerDao = require('../dao/trainerDao')
+// const memberDao = require('../dao/memberDao')
+// const chatDao = require('../dao/chatDao')
+// const chatService = require('../service/chat-service')
+// const connection = datasource.getConnection()
+// trainerDao.setConnection(connection)
+// memberDao.setConnection(connection)
+// chatDao.setConnection(connection)
+//
+// chatService.setTrainerDao(trainerDao)
+// chatService.setMemberDao(memberDao)
+// chatService.setChatDao(chatDao)
 
-studentService.setStudentDao(studentDao)
-studentService.setMemberDao(memberDao)
-
-var client = [];
+var user = [];
 
 const router = express.Router()
 
 
 router.ws('/chat.json', function(ws, req) {
   console.log('router.ws 콜백함수 실행됨')
+  console.log('client connected')
+  user.push(ws)
 
-  client.push(ws)
 
-  ws.on('message', function(msg) {
+  ws.on('message', function(value) {
     // ws.send('서버에서 보냈어!' + msg);
+    console.log(value)
+    var obj = JSON.parse(value),
+      msg = obj.message,
+      sender = obj.sender;
+      broadcast(msg)
     console.log('ws.on() 콜백 함수 실행')
-    broadcast(msg)
-
   });
+
+
+  ws.on('close', function(user) {
+    client.splice(client.indexof(client), 1)
+    console.log('client disconnected')
+  })
+
+  ws.on('error', function(user) {
+    user.splice(user.indexof(client), 1)
+    console.log('error')
+  })
 });
 
 
 function broadcast(msg) {
-  for (var i = 0; i < client.length; i++) {
-    client[i].send(msg)
+  for(var i in user) {
+    console.log(user[i]);
+    user[i].send(msg);
   }
 }
+
 
 
 
@@ -133,9 +153,6 @@ module.exports = router
 //     console.log(error)
 //   })
 // })
-
-
-
 
 
 

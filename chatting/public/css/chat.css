@@ -34,7 +34,7 @@ dd {
   padding: 0;
 }
 
-.chat-header {
+.chat-header-box {
   position: relative;
   width: 100%;
   margin: 0;
@@ -46,13 +46,14 @@ dd {
   color: white;
 }
 
-.chat-header > .close-btn {
+.chat-header-box > .backBtn {
   position: absolute;
-  right: 5%;
+  left: 5%;
   bottom: -7%;
   font-size: 2rem;
   font-weight: normal;
   line-height:2.5;
+  color: white;
 }
 
 
@@ -79,6 +80,8 @@ dd {
   padding: 10px;
   background-color: white;
   border-radius: 10px;
+  border: 1px solid gray;
+  margin: 2px 0;
 }
 .btn {
   font-size: 1.6rem;
