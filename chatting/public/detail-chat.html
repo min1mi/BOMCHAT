@@ -16,7 +16,7 @@
   <div class='chat-container'>
     <div class="chat-header-box">
       <a href="javascript:history.go(-1)" class='backBtn'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-      <div class="chat-header" value='2'>홍길동</div>
+      <div class="chat-header"></div>
     </div>
 
     <div id='messageBox' class='messageBox'>
@@ -41,15 +41,5 @@
 
 </body>
 <script src="./js/chat.js"></script>
-<script launguage=javascript>
-  var url1 = decodeURIComponent(location.href);
-  var url2 = location.href.split('?')[0];
-  console.log(url1)
-  console.log(url2)
-  if( decodeURIComponent(location.href).match(url1) ) {
-  decodeURIComponent(location.href) = decodeURIComponent(document.URL).replace(url1, url2);
-  console.log(2)
-}
-  console.log(decodeURIComponent(document.URL).replace(url1, url2))
-</script>
+
 </html>
