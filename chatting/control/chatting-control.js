@@ -1,158 +1,112 @@
 const express = require('express')
-// const datasource = require('../util/datasource')
-// const trainerDao = require('../dao/trainerDao')
-// const memberDao = require('../dao/memberDao')
-// const chatDao = require('../dao/chatDao')
+const datasource = require('../util/datasource')
+// const trainerDao = require('../dao/chatDao')
 // const chatService = require('../service/chat-service')
-// const connection = datasource.getConnection()
-// trainerDao.setConnection(connection)
-// memberDao.setConnection(connection)
+const connection = datasource.getConnection()
 // chatDao.setConnection(connection)
-//
-// chatService.setTrainerDao(trainerDao)
-// chatService.setMemberDao(memberDao)
 // chatService.setChatDao(chatDao)
 
-var user = [];
+var clients = [];
 
 const router = express.Router()
 
 
 router.ws('/chat.json', function(ws, req) {
   console.log('router.ws 콜백함수 실행됨')
+  var myMap = new Map;
+  clients.push(myMap)
   console.log('client connected')
-  user.push(ws)
 
 
   ws.on('message', function(value) {
     // ws.send('서버에서 보냈어!' + msg);
     console.log(value)
     var obj = JSON.parse(value),
-      msg = obj.message,
-      sender = obj.sender;
-      broadcast(msg)
-    console.log('ws.on() 콜백 함수 실행')
-  });
+      msg = obj.message
 
+    if (!myMap.has('user')) {
+      var you = obj.you,
+        me = obj.me,
+        isTrainer = obj.isTrainer
 
-  ws.on('close', function(user) {
-    client.splice(client.indexof(client), 1)
-    console.log('client disconnected')
+        console.log(you)
+        console.log(me)
+      myMap.set('user', me)
+      myMap.set('ws', ws)
+      myMap.set('opponent', you)
+      myMap.set('isTrainer', (isTrainer == 'Y' ? true : false))
+
+      console.log('새로운 유저!\n유저 넘버: ' + myMap.get('user') +
+        ', wsID: ' + myMap.get('ws')._socket._handle.fd +
+        ', 상대방 넘버: ' + myMap.get('opponent'));
+
+      setCommunicator(myMap)
+      return;
+    }
+
+    if (myMap.has('oppMap')) {
+      var data = JSON.stringify({
+        'message': msg,
+        'sender': 'you'
+      })
+      broadcast(myMap, data)
+    }
+
+    // if(myMap.get('isMusician')) addMusiChat(myMap, msg)
+    // else addChat(myMap, msg)
   })
 
-  ws.on('error', function(user) {
-    user.splice(user.indexof(client), 1)
-    console.log('error')
-  })
+
+
+ws.on('close', function(user) {
+  client.splice(client.indexof(client), 1)
+  console.log('client disconnected')
+})
+
+ws.on('error', function(user) {
+user.splice(user.indexof(client), 1)
+console.log('error')
+})
 });
 
+// function addTrainerChat(myMap, msg) {
+//   chatService.insert({
+//     'mno' : myMap.get('opponent'),
+//     'muno' : myMap.get('user'),
+//     'msg' : msg,
+//     'date' : now,
+//     'who' : myMap.get('user')
+//   }, function(result) {
+//     var data = {
+//       'message': msg,
+//       'sender': 'me'
+//     }
+//     myMap.get('ws').send(JSON.stringify(data));
+//   }, function(error) {
+//     console.log(error)
+//   })//chatService.insert()
+// } //addChat()
 
-function broadcast(msg) {
-  for(var i in user) {
-    console.log(user[i]);
-    user[i].send(msg);
-  }
+function setCommunicator(myMap) {
+  var oppMap;
+  for (var i = 0; i < clients.length; i++) {
+    oppMap = clients[i]
+    if ((oppMap.get('opponent') == myMap.get('user')) && (oppMap.get('user') == myMap.get('opponent'))) {
+      console.log('상대도 온라인 상태');
+      myMap.set('oppMap', oppMap)
+      oppMap.set('oppMap', myMap)
+      return;
+    }
+    console.log('상대는 오프라인');
+  } //for()
+} //broadcast()
+
+function broadcast(myMap, data) {
+  console.log('브로드 캐스트 => ' + myMap.get('opponent') + ', wsID: ' + myMap.get('oppMap').get('ws')._socket._handle.fd);
+  myMap.get('oppMap').get('ws').send(data)
 }
 
-
-
-
 module.exports = router
-
-
-
-
-
-
-
-
-//
-// router.get('/list.json', (request, response) => {
-//   var pageNo = 1,
-//       pageSize = 3
-//   if (request.query.pageNo) {
-//     pageNo = parseInt(request.query.pageNo)
-//   }
-//   if (request.query.pageSize) {
-//     pageSize = parseInt(request.query.pageSize)
-//   }
-//   studentService.list(pageNo, pageSize, function(results, totalCount) { // 1페이지 데이터를 가져와
-//     response.json({list: results, totalCount: totalCount}) // 자바스크립트 객체를 만들어서 넘겨라
-//
-//   }, function(error) {
-//     response.status(200)
-//             .set('Content-Type', 'text/plain;charset=UTF-8')
-//             .end('error')
-//     console.log(error)
-//   })
-// })
-//
-// router.get('/detail.json', function(request, response) {
-//   var no = parseInt(request.query.no)
-//   studentService.detail(no, function(result) {
-//     response.json(result)
-//
-//   }, function(error) {
-//     response.status(200)
-//             .set('Content-Type', 'text/plain;charset=UTF-8')
-//             .end('error')
-//     console.log(error)
-//   })
-// })
-//
-// router.post('/update.json', function(request, response) {
-//   studentService.update({
-//     no: request.body.no,
-//     working: request.body.working,
-//     school_nm: request.body.schoolName,
-//     name: request.body.name,
-//     tel: request.body.tel,
-//     email: request.body.email,
-//     password: '1111'
-//
-//   }, function(result) {
-//     response.json({result: 'yes'})
-//
-//   }, function(error) {
-//     response.status(200)
-//             .set('Content-Type', 'text/plain;charset=UTF-8')
-//             .end('error')
-//     console.log(error)
-//   })
-// })
-//
-// router.get('/delete.json', function(request, response) {
-//   var no = parseInt(request.query.no)
-//   studentService.delete(no, function(result) {
-//   response.json({result: 'yes'})
-//
-//   }, function(error) {
-//     response.status(200)
-//             .set('Content-Type', 'text/plain;charset=UTF-8')
-//             .end('error')
-//     console.log(error)
-//   })
-// })
-//
-// router.post('/add.json', function(request, response) {
-//   studentService.insert({
-//     working: request.body.working,
-//     school_nm: request.body.schoolName,
-//     name: request.body.name,
-//     tel: request.body.tel,
-//     email: request.body.email,
-//     password: '1111'
-//
-//   }, function(result) {
-//     response.json({result: 'yes'})
-//
-//   }, function(error) {
-//     response.status(200)
-//             .set('Content-Type', 'text/plain;charset=UTF-8')
-//             .end('error')
-//     console.log(error)
-//   })
-// })
 
 
 
