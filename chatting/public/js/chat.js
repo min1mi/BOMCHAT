@@ -3,12 +3,13 @@ var params = decodeURIComponent(location.href).split('?')[1],
   yourNo = parseInt(params.split('&')[1].split('=')[1]),
   yourName = params.split('&')[2].split('=')[1],
   memberType = parseInt(params.split('&')[3].split('=')[1]),
+  imgPath = params.split('&')[4].split('=')[1],
   message = $('#message'),
   sendBtn = $('#sendBtn'),
   messageBox = $('#messageBox'),
   ws;
 
-console.log(myNo, yourNo, yourName, memberType);
+console.log(myNo, yourNo, yourName, memberType, imgPath);
 // var ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.19:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.77:8888/chat/chat.json');
@@ -34,9 +35,10 @@ function appendMsg(event, isMyAlias, isSendData) {
 
   event = event.replace(/\r?\n/g, '<br />');
   $('<div>').addClass('cd-content clearfix')
-    .appendTo(messageBox)
     .append($('<span>').addClass(isMyAlias ? "me" : "you")
       .html(event))
+    .appendTo(messageBox)
+    .appebd($('<img>').attr('src', isMyAlias ? '' : imgPath)
 
   if (isSendData) sendChat(sendValue)
 
