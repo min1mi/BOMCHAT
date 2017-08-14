@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"  user-scalable=no>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel='stylesheet' href="./css/bombee.css">
@@ -18,26 +19,15 @@
       <a href="javascript:history.go(-1)" class='backBtn'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
       <div class="chat-header"></div>
     </div>
-
     <div id='messageBox' class='messageBox'>
-      <div class='cd-content clearfix'>
-        <span class='me' name="me" rows="8" cols="80">안녕하세요</span>
-      </div>
-      <div class='cd-content clearfix'>
-        <span class='you' name="you" rows="8" cols="80">네, 안녕하세요^^</span>
-        <img class='your-img'>
-      </div>
-      <div class='cd-content clearfix'>
-        <span class='me' name="me" rows="8" cols="80">안녕하세요</span>
-      </div>
+
     </div>
-
-
     <div class='message-input-box'>
       <input id="message" maxlength="255" type="text" placeholder="메세지를 작성하세요">
       <button id="sendBtn" type="button" class='btn'>전송</button>
     </div>
   </div>
+
 
 </body>
 <script src="./js/chat.js"></script>

@@ -7,12 +7,25 @@ var params = decodeURIComponent(location.href).split('?')[1],
   message = $('#message'),
   sendBtn = $('#sendBtn'),
   messageBox = $('#messageBox'),
-  ws;
+  ws,
+  isOpponentOnline = 'N',
+  timeBefore,
+  dateBefore,
+  isMyAliasBefore,
+  host = '172.20.10.3';
 
 console.log(myNo, yourNo, yourName, memberType, imgPath);
 // var ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.19:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.77:8888/chat/chat.json');
+
+function hideAddressBar(){
+	if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+		document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+	setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",hideAddressBar());
 
 
 var url1 = decodeURIComponent(location.href);
@@ -35,19 +48,25 @@ function appendMsg(event, isMyAlias, isSendData) {
 
   event = event.replace(/\r?\n/g, '<br />');
   $('<div>').addClass('cd-content clearfix')
-    .append($('<span>').addClass(isMyAlias ? "me" : "you")
-      .html(event))
     .appendTo(messageBox)
-    .appebd($('<img>').attr('src', isMyAlias ? '' : imgPath)
+    .append($('<span>').addClass(isMyAlias ? "me" : "you")
+    .html(event))
+    .append($('<img>').attr('src', isMyAlias ? '' : 'http://' +  imgPath))
 
-  if (isSendData) sendChat(sendValue)
-
-  message.val('')
-  message.focus()
+  if (isSendData) {
+    sendChat(sendValue)
+    message.val('')
+    message.focus()
+  }
   sizeBack()
-  resizeMessageBoxPadding()
-  messageBox.scrollTop(messageBox.height())
-
+  // resizeMessageBoxPadding()
+  var viewHeight
+    if (messageBox.height() < messageBox.prop("scrollHeight"))
+    viewHeight = messageBox.prop("scrollHeight")
+    else viewHeight = messageBox.height()
+    // console.log(messageBox.height())
+    // console.log(messageBox.prop("scrollHeight"))
+    messageBox.scrollTop(viewHeight)//가장 마지막 메시지가 보일 수 있도록 스크롤을 가장 아래로 내림
 }
 
 function readyChat() {
@@ -79,15 +98,17 @@ function sendChat(value) {
 
 sendBtn.on('click', function() {
   appendMsg(message.val(), true, true)
+  message.val('')
+  message.focus()
 })
 
 message.keyup(function(e) {
   if (e.keyCode == 13) {
-    // var text = message.val().replace('\r', '').replace('\n', '')
-    // message.val(text)
+    appendMsg(message.val(), true, true)
+    message.val('')
     sendBtn.click() // send 버튼에 click이벤트 발생시킴, 호출X
   }
-  e.preventDefault()
+  // e.preventDefault()
 })
 
 function resizeMessageBoxPadding() {
@@ -98,6 +119,7 @@ function resizeMessageBoxPadding() {
   }
 
   var lastBalloon = $('.cd-content:last')
+  console.log(lastBalloon)
   var totalBalloonHeight = parseFloat(lastBalloon.css('height')) +
     parseFloat(lastBalloon.css('margin-top')) +
     parseFloat(lastBalloon.css('margin-bottom')) +
@@ -106,6 +128,7 @@ function resizeMessageBoxPadding() {
 
 
   var result = padding - totalBalloonHeight;
+  console.log(result)
   if (result < 10) {
     result = 10;
   }
@@ -115,7 +138,7 @@ function resizeMessageBoxPadding() {
 
 
 function sizeBack() {
-  message.css('height', '7vh')
+  message.css('height', '6vh')
 }
 
 

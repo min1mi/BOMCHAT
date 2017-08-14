@@ -56,8 +56,8 @@ router.ws('/chat.json', function(ws, req) {
       broadcast(myMap, data)
     }
 
-    if (myMap.get('isTrainer')) addTrainerChat(myMap, msg)
-    else addChat(myMap, msg)
+    // if (myMap.get('isTrainer')) addTrainerChat(myMap, msg)
+    // else addChat(myMap, msg)
   })
 
   ws.on('close', function(user) {
@@ -71,43 +71,43 @@ router.ws('/chat.json', function(ws, req) {
   })
 });
 
-function addChat(myMap, msg) {
-  var now = moment().format("YYYY-MM-DD HH:mm:ss")
-  chatService.insert({
-    'tno': myMap.get('opponent'),
-    'mno': myMap.get('user'),
-    'msg': msg,
-    'date': now
-
-  }, function(result) {
-    var data = {
-      'message': msg,
-      'sender': 'me'
-    }
-    myMap.get('ws').send(JSON.stringify(data));
-  }, function(error) {
-    console.log(error)
-  }) //chatService.insert()
-} //addChat()
-
-function addTrainerChat(myMap, msg) {
-  var now = moment().format("YYYY-MM-DD HH:mm:ss")
-  chatService.insert({
-    'mno': myMap.get('opponent'),
-    'tno': myMap.get('user'),
-    'msg': msg,
-    'date': now
-
-  }, function(result) {
-    var data = {
-      'message': msg,
-      'sender': 'me'
-    }
-    myMap.get('ws').send(JSON.stringify(data));
-  }, function(error) {
-    console.log(error)
-  }) //chatService.insert()
-} //addChat()
+// function addChat(myMap, msg) {
+//   var now = moment().format("YYYY-MM-DD HH:mm:ss")
+//   chatService.insert({
+//     'tno': myMap.get('opponent'),
+//     'mno': myMap.get('user'),
+//     'msg': msg,
+//     'date': now
+//
+//   }, function(result) {
+//     var data = {
+//       'message': msg,
+//       'sender': 'me'
+//     }
+//     myMap.get('ws').send(JSON.stringify(data));
+//   }, function(error) {
+//     console.log(error)
+//   }) //chatService.insert()
+// } //addChat()
+//
+// function addTrainerChat(myMap, msg) {
+//   var now = moment().format("YYYY-MM-DD HH:mm:ss")
+//   chatService.insert({
+//     'mno': myMap.get('opponent'),
+//     'tno': myMap.get('user'),
+//     'msg': msg,
+//     'date': now
+//
+//   }, function(result) {
+//     var data = {
+//       'message': msg,
+//       'sender': 'me'
+//     }
+//     myMap.get('ws').send(JSON.stringify(data));
+//   }, function(error) {
+//     console.log(error)
+//   }) //chatService.insert()
+// } //addChat()
 
 function setCommunicator(myMap) {
   var oppMap;

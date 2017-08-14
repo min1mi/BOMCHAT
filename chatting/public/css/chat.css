@@ -11,31 +11,13 @@
     font-size: 14px;
   }
 }
-body {
-  margin: 0px;
-  padding: 0
-}
-
-dl {
-  display: inline-block;
-  margin-left: 10px;
-}
-dt {
-  position: absolute;
-  float: left;
-}
-dd {
-  float: left;
-  position: absolute;
-  margin-top: 20px;
-}
-
 .chat-container {
   padding: 0;
+  position: relative;
 }
 
 .chat-header-box {
-  position: relative;
+  position: fixed;
   width: 100%;
   margin: 0;
   font-size: 1.6rem;
@@ -55,14 +37,12 @@ dd {
   line-height:2.5;
   color: white;
 }
-
-
-.chat-line div {
-  display: inline;
-}
-
-.chat-body {
-  margin: 0;
+.user {
+  font-size: 2.8rem;
+  color: lightgray;
+  float: right;
+  margin-top: 1%;
+  margin-left: 2%;
 }
 .chat-content > div {
   border-bottom: 1px solid gray;
@@ -70,11 +50,6 @@ dd {
 .chat-content img {
   margin: 5px 0;
   display: inline;
-}
-
-.chat-detail {
-  height:623px;
-  background-color: #F2D9D9;
 }
 .cd-content span {
   padding: 10px;
@@ -84,6 +59,8 @@ dd {
   margin: 2px 0;
 }
 .btn {
+  position: absolute;
+  right: 7px;
   font-size: 1.6rem;
   color: white;
   background-color: #f7ac1a;
@@ -96,6 +73,12 @@ dd {
   margin: 4px 0;
 }
 
+.message-input-box {
+  position: fixed;
+  bottom: 0;
+  height: 6vh;
+  width: 100%;
+}
 
 #cd-header img {
   position: absolute;
@@ -121,11 +104,15 @@ dd {
 }
 
 #messageBox {
-  box-sizing: border-box;
+  position: fixed;
+  box-sizing: content-box;
+  /*position: absolute;*/
   overflow:scroll;
-  width: 100%;
-  height: 72%;
-  padding: 10px;
+  width: 95.5%;
+  height: 82%;
+  top: 60px;
+  padding: 0 10px;
+  /*vertical-align: bottom;*/
 }
 
 #cd-footer {
@@ -133,7 +120,11 @@ dd {
 }
 
 #message {
-  margin-left: 2px;
-  height: 30px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  height: 6vh;
+  border-radius: 10px;
   width: 78%;
+  outline: none;
 }
