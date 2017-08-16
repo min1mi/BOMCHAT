@@ -32,10 +32,30 @@ $('.chat-header').text(yourName)
 // $('.chat-header').attr('value', yourNo)
 
 messageBox.scrollTop(messageBox.prop('scrollHeight'));
-
+/* 채팅 시작 */
+detail(memberType)
 readyChat()
 
-function appendMsg(event, isMyAlias, isSendData) {
+function detail(memberType) {
+  var url;
+  if(memberType == 1) url = '/chat/listUser.json'
+  else url = '/chat/listTrainer.json'
+
+console.log(url)
+  $.post(url, {
+    'myNo' : myNo,
+    'yourNo' : yourNo
+
+  }, function(result) {
+    $.each(result.list, function (i, item) {
+      appendMsg(item.msg, item.whosend == myNo, false, item.confirm, item.date)
+    })
+  }).done(function() {}).fail(function() {
+    console.log('detail fail')
+  }).always(function() {})
+} // detail()
+
+function appendMsg(event, isMyAlias, isSendData, confirm, datetime) {
   var text = event.replace(/\r?\n/g, '');
   text = text.replace(/\s/g, "");
   if (!text) return;

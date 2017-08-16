@@ -189,6 +189,35 @@ function removeClient(myMap) {
   return result;
 }
 
+router.post('/listUser.json', (req, res) => {
+  console.log('넘어왔다', req.body)
+  chatService.listUser(req.body.myNo, req.body.yourNo, function (results) {
+    res.json({
+      'list': results
+    })
+  }, function (error) {
+    res.status(200)
+       .set('Content-Type', 'text/plain;charset=UTF-8')
+       .end('error')
+       console.log(error)
+  })
+})
+
+router.post('/listTrainer.json', (req, res) => {
+  console.log('넘어왔다', req.body)
+  chatService.listUser(req.body.yourNo, req.body.myNo, function (results) {
+    res.json({
+      'list': results
+    })
+  }, function (error) {
+    res.status(200)
+       .set('Content-Type', 'text/plain;charset=UTF-8')
+       .end('error')
+       console.log(error)
+  })
+})
+
+
 module.exports = router
 
 
