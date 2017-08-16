@@ -13,9 +13,8 @@ var params = decodeURIComponent(location.href).split('?')[1],
   dateBefore,
   isMyAliasBefore,
   // host = '172.20.10.3';
-  host = '192.168.0.5';
+  host = location.host;
 
-console.log(myNo, yourNo, yourName, memberType, imgPath);
 // var ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.19:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.77:8888/chat/chat.json');
@@ -84,7 +83,7 @@ function appendMsg(event, isMyAlias, isSendData, confirm, datetime) {
 
 function readyChat() {
   // ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
-  ws = new WebSocket('ws://192.168.0.5:8888/chat/chat.json');
+  ws = new WebSocket('ws://' + host + '/chat/chat.json');
 
   console.log('readyChat 실행됨');
   ws.onopen = function(event) {
@@ -98,7 +97,6 @@ function readyChat() {
 
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data)
-    console.log(data)
     if (data.sender == 'you') appendMsg(data.message, false, false)
   };
 }
