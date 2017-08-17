@@ -15,6 +15,8 @@ var params = decodeURIComponent(location.href).split('?')[1],
   // host = '172.20.10.3';
   host = location.host;
 
+
+console.log(imgPath)
 // var ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.19:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.77:8888/chat/chat.json');
@@ -47,6 +49,7 @@ console.log(url)
 
   }, function(result) {
     $.each(result.list, function (i, item) {
+      console.log(item)
       appendMsg(item.msg, item.whosend == myNo, false, item.confirm, item.date)
     })
   }).done(function() {}).fail(function() {
@@ -62,11 +65,12 @@ function appendMsg(event, isMyAlias, isSendData, confirm, datetime) {
   var sendValue = event;
 
   event = event.replace(/\r?\n/g, '<br />');
+
   $('<div>').addClass('cd-content clearfix')
     .appendTo(messageBox)
     .append($('<span>').addClass(isMyAlias ? "me" : "you")
     .html(event))
-    .append($('<img>').attr('src', isMyAlias ? '' : 'http://' +  imgPath))
+    .append($('<img>').attr('src', isMyAlias ? "" : imgPath))
 
   if (isSendData) {
     sendChat(sendValue)

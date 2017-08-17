@@ -1,16 +1,35 @@
 /*iphone5~6*/
-@media (min-device-width: 320px) and (max-device-width: 375px) {
-  html {
-    font-size: 10px;
-  }
 
+@media (min-device-width: 320px) and (max-device-width: 374px) {
+  body {
+    font-size: 13px;
+  }
+  #messageBox img {
+    height: 43.281px;
+  }
 }
+
+
 /*iphone plus*/
-@media (min-device-width: 375px) and (max-device-width: 767px) {
-  html {
+
+@media (min-device-width: 375px) and (max-device-width: 413px) {
+  body {
     font-size: 14px;
   }
+  #messageBox img {
+    height: 51.156px;
+  }
 }
+
+@media (min-device-width: 414px) and (max-device-width: 735px) {
+  body {
+    font-size: 15px;
+  }
+  #messageBox img {
+    height: 56.75px;
+  }
+}
+
 .chat-container {
   padding: 0;
   position: relative;
@@ -28,15 +47,16 @@
   color: white;
 }
 
-.chat-header-box > .backBtn {
+.chat-header-box>.backBtn {
   position: absolute;
   left: 5%;
   bottom: -7%;
   font-size: 2rem;
   font-weight: normal;
-  line-height:2.5;
+  line-height: 2.5;
   color: white;
 }
+
 .user {
   font-size: 2.8rem;
   color: lightgray;
@@ -44,13 +64,16 @@
   margin-top: 1%;
   margin-left: 2%;
 }
-.chat-content > div {
+
+.chat-content>div {
   border-bottom: 1px solid gray;
 }
+
 .chat-content img {
   margin: 5px 0;
   display: inline;
 }
+
 .cd-content span {
   padding: 10px;
   background-color: white;
@@ -58,6 +81,7 @@
   border: 1px solid gray;
   margin: 2px 0;
 }
+
 .btn {
   position: absolute;
   right: 7px;
@@ -65,9 +89,11 @@
   color: white;
   background-color: #f7ac1a;
 }
+
 .me {
   float: right;
 }
+
 .you {
   display: inline-block;
   margin: 4px 0;
@@ -84,7 +110,8 @@
   position: absolute;
   left: 5px;
   vertical-align: top;
-  margin: 5px 0 0 5px;;
+  margin: 5px 0 0 5px;
+  ;
 }
 
 #cd-header {
@@ -95,19 +122,19 @@
   border-bottom: 1px solid gray;
 }
 
-
 #messageBox img {
-  border-radius: 10px;
+  border-radius: 50px;
   float: left;
-  margin-right: 7px;
-  width: 50px;
+  margin-right: 2%x;
+  width: 15%;
+  margin-bottom: 1%;
 }
 
 #messageBox {
   position: fixed;
   box-sizing: content-box;
   /*position: absolute;*/
-  overflow:scroll;
+  overflow: scroll;
   width: 95.5%;
   height: 82%;
   top: 60px;
