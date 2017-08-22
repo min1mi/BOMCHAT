@@ -9,6 +9,8 @@ var cons = require('consolidate')
 
 var app = express()
 var expressWs = require('express-ws')(app);
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false}));
 
 // 사용할 템플릿 엔진 모듈 로딩
 // var handlebars = require('handlebars')
@@ -24,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // 서비스 라우터 등록
 // => http://localhost:8888/student/.... 요청을 처리할 라우터를 등록한다.
 app.use('/chat', require('./control/chatting-control.js'))
+app.use('/alert', require('./control/alert-control.js'))
 
 app.listen(8888, function() {
   console.log('서버 시작');

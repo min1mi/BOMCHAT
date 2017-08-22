@@ -9,13 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "consolidate": "^0.14.5",
+    "handlebars": "^4.0.6",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
-    "handlebars": "^4.0.6",
+    "mysql": "^2.13.0",
     "sweetalert2": "^6.6.8",
-    "swiper": "^3.4.2",
-    "mysql": "^2.13.0"
+    "swiper": "^3.4.2"
   }
 }
