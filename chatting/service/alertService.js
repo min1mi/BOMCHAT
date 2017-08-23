@@ -16,5 +16,11 @@ module.exports = {
       this.alertDao.add(type, othername, mymno, kinds, function(results) {
         success(results)
       })
-  }
+  }, //add
+  delete(no, success, error){
+    var obj = this
+    this.alertDao.delete(no, function(results) {
+      success(results)
+    })
+  } //delete
 } // module

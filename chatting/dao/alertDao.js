@@ -32,6 +32,18 @@ module.exports = {
           successFn(result)
         }
       })
+  },
+  delete(no, successFn, errorFn) {
+    this.connection.query(
+      'delete from alert where alno = ?',
+      [no],
+      function (error, result) {
+        if (error) {
+          errorFn(error)
+        } else {
+          successFn(result)
+        }
+      })
   }
 } // module
 

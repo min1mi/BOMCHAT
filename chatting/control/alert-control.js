@@ -41,4 +41,19 @@ router.post('/add.json', (request, response) => {
   })
 })
 
+router.post('/delete.json', (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  console.log('삭제 들어옴')
+  var no = request.body.no
+
+  alertService.delete(no, function(result) {
+    response.json(result)
+  }, function(error) {
+    response.status(200)
+           .set('Content-Type', 'text/plain;charset=UTF-8')
+            .end('error')
+    console.log(error)
+  })
+})
+
 module.exports = router
