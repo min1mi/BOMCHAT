@@ -10,5 +10,11 @@ module.exports = {
       this.alertDao.get(no, function(results) {
        success(results)
      }, error)
-  } // list
+  }, // get
+  add(type, othername, mymno, kinds, success, error) {
+    var obj = this
+      this.alertDao.add(type, othername, mymno, kinds, function(results) {
+        success(results)
+      })
+  }
 } // module

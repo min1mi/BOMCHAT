@@ -15,10 +15,21 @@ module.exports = {
       function (error, result) {
         if (error) {
           errorFn(error)
-
         } else {
           successFn(result)
-
+        }
+      })
+  },
+  add(type, othername, mymno, kinds, successFn, errorFn) {
+    this.connection.query(
+      'insert into alert(othername, mymno, kinds, date, \
+      confirm, type) values(?,?,?,now(),0,?)',
+      [othername, mymno, kinds, type],
+      function (error, result) {
+        if (error) {
+          errorFn(error)
+        } else {
+          successFn(result)
         }
       })
   }

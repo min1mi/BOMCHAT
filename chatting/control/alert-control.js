@@ -11,10 +11,8 @@ alertService.setAlertDao(alertDao)
 const router = express.Router()
 
 router.post('/get.json', (request, response) => {
-  console.log("2222222")
   response.setHeader("Access-Control-Allow-Origin", "*")
   var no = request.body.no
-  console.log(no)
    alertService.get(no, function(result) {
      response.json(result)
  }, function(error) {
@@ -23,6 +21,24 @@ router.post('/get.json', (request, response) => {
              .end('error')
      console.log(error)
    })
+})
+
+router.post('/add.json', (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  console.log('애드들어옴')
+  var type = request.body.type
+  var othername = request.body.othername
+  var mymno = request.body.mymno
+  var kinds = request.body.kinds
+  console.log(type, othername, mymno,kinds)
+  alertService.add(type, othername, mymno, kinds, function(result) {
+    response.json(result)
+  }, function(error) {
+    response.status(200)
+           .set('Content-Type', 'text/plain;charset=UTF-8')
+            .end('error')
+    console.log(error)
+  })
 })
 
 module.exports = router
