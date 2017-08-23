@@ -8,7 +8,7 @@ module.exports = {
   get(no, successFn, errorFn) {
     this.connection.query(
       'select a.alno, a.othername, a.mymno, \
-      a.kinds, a.date, a.confirm, a.type, m.name, m.img \
+      a.kinds, a.date, a.confirm, a.type, m.img \
       from alert a inner join memb m on a.othermno = m.mno\
       where a.mymno = ?',
       [no],
