@@ -66,11 +66,14 @@ function appendMsg(event, isMyAlias, isSendData, confirm, datetime) {
 
   event = event.replace(/\r?\n/g, '<br />');
 
-  $('<div>').addClass('cd-content clearfix')
+var talk = $('<div>').addClass('cd-content clearfix')
     .appendTo(messageBox)
     .append($('<span>').addClass(isMyAlias ? "me" : "you")
     .html(event))
-    .append($('<img>').attr('src', isMyAlias ? "" : imgPath))
+
+    if (!isMyAlias)
+      talk.append($('<img>').attr('src', imgPath))
+
 
   if (isSendData) {
     sendChat(sendValue)

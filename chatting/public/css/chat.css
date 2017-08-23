@@ -5,7 +5,7 @@
     font-size: 13px;
   }
   #messageBox img {
-    height: 43.281px;
+    height: 36.656px;
   }
 }
 
@@ -17,7 +17,7 @@
     font-size: 14px;
   }
   #messageBox img {
-    height: 51.156px;
+    height: 42.969px;
   }
 }
 
@@ -26,7 +26,7 @@
     font-size: 15px;
   }
   #messageBox img {
-    height: 56.75px;
+    height: 47.438px;
   }
 }
 
@@ -47,10 +47,10 @@
   color: white;
 }
 
-.chat-header-box>.backBtn {
+.chat-header-box > .backBtn {
   position: absolute;
   left: 5%;
-  bottom: -7%;
+  bottom: 8%;
   font-size: 2rem;
   font-weight: normal;
   line-height: 2.5;
@@ -90,8 +90,12 @@
   background-color: #f7ac1a;
 }
 
-.me {
+.cd-content .me {
   float: right;
+  border: none;
+  color: white;
+  background-color: black;
+
 }
 
 .you {
@@ -111,7 +115,6 @@
   left: 5px;
   vertical-align: top;
   margin: 5px 0 0 5px;
-  ;
 }
 
 #cd-header {
@@ -125,9 +128,10 @@
 #messageBox img {
   border-radius: 50px;
   float: left;
-  margin-right: 2%x;
-  width: 15%;
+  margin-right: 2%;
+  width: 12%;
   margin-bottom: 1%;
+  border: none;
 }
 
 #messageBox {
