@@ -8,7 +8,10 @@ module.exports = {
   get(no, successFn, errorFn) {
     this.connection.query(
       'select a.alno, a.othername, a.mymno, \
-      a.kinds, a.date, a.confirm, a.type, m.img \
+      a.kinds, a.confirm, a.type, m.img, \
+      date_format(a.date, "%p") as pm,\
+      date_format(a.date, "%h:%i") as time,\
+      date_format(a.date, "%Y-%m-%d") as date\
       from alert a inner join memb m on a.othermno = m.mno\
       where a.mymno = ?',
       [no],
@@ -20,11 +23,11 @@ module.exports = {
         }
       })
   },
-  add(type, othername, mymno, kinds, successFn, errorFn) {
+  add(type, othername, mymno, kinds, othermno, successFn, errorFn) {
     this.connection.query(
       'insert into alert(othername, mymno, kinds, date, \
-      confirm, type) values(?,?,?,now(),0,?)',
-      [othername, mymno, kinds, type],
+      confirm, type, othermno) values(?,?,?,now(),0,?,?)',
+      [othername, mymno, kinds, type, othermno],
       function (error, result) {
         if (error) {
           errorFn(error)

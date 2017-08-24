@@ -11,9 +11,9 @@ module.exports = {
        success(results)
      }, error)
   }, // get
-  add(type, othername, mymno, kinds, success, error) {
+  add(type, othername, mymno, kinds, othermno, success, error) {
     var obj = this
-      this.alertDao.add(type, othername, mymno, kinds, function(results) {
+      this.alertDao.add(type, othername, mymno, kinds, othermno, function(results) {
         success(results)
       })
   }, //add
