@@ -72,7 +72,7 @@ var talk = $('<div>').addClass('cd-content clearfix')
     .html(event))
 
     if (!isMyAlias)
-      talk.append($('<img>').attr('src', imgPath))
+      talk.append($('<img>').attr('src', 'http://' + imgPath))
 
 
   if (isSendData) {
