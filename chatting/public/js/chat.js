@@ -15,7 +15,6 @@ var params = decodeURIComponent(location.href).split('?')[1],
   // host = '172.20.10.3';
   host = location.host;
 
-
 console.log(imgPath)
 // var ws = new WebSocket('ws://172.20.10.5:8888/chat/chat.json');
 // var ws = new WebSocket('ws://192.168.0.19:8888/chat/chat.json');
