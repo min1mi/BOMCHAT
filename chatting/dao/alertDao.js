@@ -13,7 +13,8 @@ module.exports = {
       date_format(a.date, "%h:%i") as time,\
       date_format(a.date, "%Y-%m-%d") as date\
       from alert a inner join memb m on a.othermno = m.mno\
-      where a.mymno = ?',
+      where a.mymno = ?\
+      order by a.alno desc',
       [no],
       function (error, result) {
         if (error) {
