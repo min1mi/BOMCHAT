@@ -12,6 +12,7 @@ const router = express.Router()
 
 router.post('/get.json', (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*")
+  console.log(111)
   var no = request.body.no
    alertService.get(no, function(result) {
      for(var i=0; i < result.length; i++) {
