@@ -24,6 +24,6 @@ module.exports = {
   }, // insert
 
   update(memberNo, trainerNo, success, error) {
-    this.chatDoa.update(memberNo, trainerNo, success, error)
+    this.chatDao.update(memberNo, trainerNo, success, error)
   } // update
 } // module

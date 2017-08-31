@@ -130,6 +130,9 @@ message.keyup(function(e) {
 function sizeBack() {
   message.css('height', '6vh')
 }
+$('.backBtn').click(function() {
+  location.href = "http://"+ location.host.split(':')[0] + "/chat/chat.html"
+})
 
 
 
