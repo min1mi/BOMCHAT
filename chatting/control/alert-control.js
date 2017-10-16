@@ -28,7 +28,6 @@ router.post('/get.json', (request, response) => {
   // 여기서는 이 요청이 Ajax 요청임을 알려주기 위해 Header 에 x-request-width를 설정합니다.
   // Form을 통한 요청과 Ajax 요청을 구분하기 위해 사용된 비표준 규약지만, 많은 라이브러리에서 이를 채택하여 사용하고 있습니다.
   // (참고로 HTML5 부터는 Form 과 Ajax 요청을 구분할 수 있는 Header가 추가되었습니다.)
-
   response.setHeader("Access-Control-Allow-Origin", "https://www.bombees.com")
 
   // 이 부분이 가장 중요한 부분입니다.
@@ -56,7 +55,7 @@ router.post('/get.json', (request, response) => {
 })
 
 router.post('/add.json', (request, response) => {
-  response.setHeader("Access-Control-Allow-Origin", "*")
+  response.setHeader("Access-Control-Allow-Origin", "https://www.bombees.com")
   console.log('애드들어옴')
   var type = request.body.type
   var othermno = request.body.othermno
@@ -75,7 +74,7 @@ router.post('/add.json', (request, response) => {
 })
 
 router.post('/delete.json', (request, response) => {
-  response.setHeader("Access-Control-Allow-Origin", "*")
+  response.setHeader("Access-Control-Allow-Origin", "https://www.bombees.com")
   console.log('삭제 들어옴')
   var no = request.body.no
 
