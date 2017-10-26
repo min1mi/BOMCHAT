@@ -2,7 +2,7 @@
 
 **BOMBEE** 서비스(url: https://www.bombee.com)에서 사용하는 채팅입니다.
 
-- 사용할 수 있는 환경 : iPhone 6, 6+
+- 사용할 수 있는 환경 : iPhone 6, 6+, 7, 7+
 
 # 개발 기간
 
