@@ -1,4 +1,4 @@
-# BOMCHAT
+"# BOMCHAT
 
 **BOMBEE** 서비스(url: https://www.bombee.com) 에서 사용하는 채팅입니다.
 
@@ -29,7 +29,7 @@
 - Chating
 
 <img src="./ReadmeImage/채팅1.jpg" width="250"> <img src="./ReadmeImage/채팅목록1.jpg" width="250"> <img src="./ReadmeImage/채팅
-.jpg width="250">
+.jpg" width="250">
 
 # 테이블 구조
 
