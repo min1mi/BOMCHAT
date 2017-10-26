@@ -34,7 +34,7 @@
 
 - DB Table
 
-<img src="./ReadmeImage/테이블구조1.PNG" width="250">
+<img src="./ReadmeImage/테이블구조1.PNG">
 
 | ALERT 테이블(알람)|||
 | :-----: | :-: |:-: |
