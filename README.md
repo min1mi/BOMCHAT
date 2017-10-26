@@ -28,7 +28,7 @@
 
 - Chating
 
-<img src="./ReadmeImage/채팅1.jpg" width="250"> <img src="./ReadmeImage/채팅목록1.jpg" width="250"> <img src="./ReadmeImage/채팅
+<img src="./ReadmeImage/chatting1.jpg" width="250"> <img src="./ReadmeImage/chattingList.jpg" width="250"> <img src="./ReadmeImage/chatting
 .jpg" width="250">
 
 # 테이블 구조
