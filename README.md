@@ -32,6 +32,10 @@
 
 # 테이블 구조
 
+- DB Table
+
+<img src="./ReadmeImage/테이블구조1.PNG" width="250">
+
 | ALERT 테이블(알람)|||
 | :-----: | :-: |:-: |
 | ALNO **`(PK)`**	| 알람 번호	| INTEGER NOT NULL|
