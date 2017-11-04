@@ -68,7 +68,7 @@ function appendMsg(event, isMyAlias, isSendData, confirm, datetime) {
     .appendTo(messageBox)
     .append($('<span>').addClass(isMyAlias ? "me" : "you")
     .html(event))
-    .append($('<span>').html(isMyAlias ?  : ''))
+//    .append($('<span>').html(isMyAlias ?  : ''))
 
     if (!isMyAlias)
       talk.append($('<img>').attr('src', imgPath))
